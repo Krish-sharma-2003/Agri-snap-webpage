@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+ <video autoplay loop muted plays-inline class="background-clips">
+    <source src="/app/188807-883827737_large.mp4" type="video/mp4" media="" />
+  </video>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <input type="checkbox" id="sidebar-active">
+        <label for="sidebar-active" class="open-sidebar-button">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <label id="overlay" for="sidebar-active"></label>
+        <div class="links-container">
+            <label for="sidebar-active" class="close-sidebar-button">
+                <i class="fa-solid fa-xmark"></i>
+            </label>
+            <a href="#">Home</a>
+            <a href="#">Blogs</a>
+            <a href="#">Help</a>
+        </div>
+    </nav>
+
+    <!-- File Upload Form -->
+    <div class="main">
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="fileUpload">
+                <i class="fa-solid fa-upload"></i> Choose a file:
+            </label>
+            <input type="file" id="fileUpload" name="fileUpload" accept=".jpg, .png, .pdf">
+            <button type="submit">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+            </button>
+            <p id="fileMessage"></p>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Agriculture Project | All Rights Reserved</p>
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        // GSAP Animations
+        gsap.from(".navbar", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+        gsap.from(".main", { duration: 1, opacity: 0, delay: 0.5, ease: "power2.out" });
+        gsap.from(".footer", { duration: 1, y: 50, opacity: 0, delay: 1, ease: "power2.out" });
+
+        // File Upload Validation
+        document.getElementById("uploadForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            let fileInput = document.getElementById("fileUpload");
+            let message = document.getElementById("fileMessage");
+
+            if (!fileInput.files.length) {
+                message.textContent = "Please select a file to upload.";
+                message.style.color = "red";
+            } else {
+                message.textContent = "File uploaded successfully!";
+                message.style.color = "green";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
